@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user, :logged_in?
 
     def current_user
-        @user ||= Users.find_by(session_token: session[:session_token])
+        @user ||= User.find_by(session_token: session[:session_token])
     end
 
 
@@ -34,6 +34,10 @@ class ApplicationController < ActionController::Base
             render :new
         end
 
+    end
+
+    def require_not_logged_in
+        redirect_to cats_url if logged_in?
     end
     
 end

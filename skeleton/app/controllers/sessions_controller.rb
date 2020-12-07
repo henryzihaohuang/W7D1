@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-    before_action :login_user!
+    before_action :require_not_logged_in, only: [:new, :create]
+
     def new
         render :new
     end
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
 
     def destroy
         current_user.reset_session_token!
-        session[:session_token]=nil
+        session[:session_token] = nil
         redirect_to new_session_url # login page
     end
 

@@ -19,7 +19,7 @@ class Cat < ApplicationRecord
     dependent: :destroy
 
   belongs_to :owner,
-    primary: :id,
+    primary_key: :id,
     foreign_key: :user_id,
     class_name: :User
 

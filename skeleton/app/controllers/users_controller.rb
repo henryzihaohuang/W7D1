@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :login_user!
+    before_action :require_not_logged_in, only: [:new, :create]
     def new
         @user = User.new
         render :new
