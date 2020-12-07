@@ -23,5 +23,17 @@ class ApplicationController < ActionController::Base
         current_user.reset_session_token!
         session[:session_token]=nil
     end
+
+    def login_user!(user)
+
+        if user 
+            session[:session_token] = user.reset_session_token!
+            redirect_to cats_url
+        else
+            flash.now[:errors] = ["Invalid credentials"]
+            render :new
+        end
+
+    end
     
 end

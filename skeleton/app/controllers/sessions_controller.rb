@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :login_user!
     def new
         render :new
     end
@@ -9,13 +10,7 @@ class SessionsController < ApplicationController
             params[:user][:password]
         )
 
-        if user 
-            session[:session_token] = user.reset_session_token!
-            redirect_to cats_url
-        else
-            flash.now[:errors] = ["Invalid credentials"]
-            render :new
-        end
+        login_user!(user)
     end
 
     def destroy
