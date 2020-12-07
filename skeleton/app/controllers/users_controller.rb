@@ -14,6 +14,16 @@ class UsersController < ApplicationController
             flash.now[:errors] = @user.errors.full_messages
             render :new
         end
+
+        # @user = User.create(user_params)
+        # if @user.save
+        #     session[:session_token] = @user.reset_session_token!
+        #     redirect_to cats_url
+        # else
+        #     flash.now[:errors] = @user.errors.full_messages
+        #     render :new
+        # end
+        
     end
 
 
